@@ -11,13 +11,16 @@ struct ContentView: View {
     @State private var showAlert = false
     @State private var sliderValue: Float = 50
     @State private var target = Int.random(in: 1...100)
+    @State private var score = 0
+    @State private var points = 0
+    @State private var round = 0
     
     var body: some View {
         VStack(alignment: .center, spacing: 50) {
             HStack{
                 Label("Put the Bull's Eye as close as you can to:", systemImage: "")
                     .labelStyle(.titleOnly)
-                Label("100", systemImage: "")
+                Label("\(target)", systemImage: "")
                     .labelStyle(.titleOnly)
             }
             HStack {
@@ -33,10 +36,11 @@ struct ContentView: View {
             HStack {
                 Button("Hit me") {
                     print("Button Hit")
+                    points = 100 - calculateDifference()
                     showAlert = true
                 }
                 .alert(isPresented: $showAlert) {
-                    Alert(title: Text("Hello World"), message: Text("The value of the slider is \(lroundf(sliderValue)).The target value is \(target)"), dismissButton: .default(Text("OK"), action: {
+                    Alert(title: Text(alertTitle(difference: calculateDifference())), message: Text("You scored: \(points)!"), dismissButton: .default(Text("OK"), action: {
                         startNewRound()
                     }))
                 }
@@ -44,12 +48,13 @@ struct ContentView: View {
             HStack(alignment: .center, spacing: 300) {
                 HStack(alignment: .center, spacing: 50) {
                     Button("Start Over") {
-                        print("Button hit")
+                        print("Start Over button hit")
+                        startOver()
                     }
                     HStack {
                         Label("Score:", systemImage: "")
                             .labelStyle(.titleOnly)
-                        Label("999", systemImage: "")
+                        Label("\(score)", systemImage: "")
                             .labelStyle(.titleOnly)
                     }
                 }
@@ -57,7 +62,7 @@ struct ContentView: View {
                     HStack {
                         Label("Round:", systemImage: "")
                             .labelStyle(.titleOnly)
-                        Label("999", systemImage: "")
+                        Label("\(round)", systemImage: "")
                             .labelStyle(.titleOnly)
                     }
                     Button(action: {
@@ -73,10 +78,45 @@ struct ContentView: View {
     }
 }
 
+// MARK: - Helper functions
 extension ContentView {
     private func startNewRound() {
+        score += points
+        round += 1
         target = Int.random(in: 1...100)
         sliderValue = 50
+    }
+    
+    private func alertTitle(difference: Int) -> String {
+        var title = ""
+        if difference == 0 {
+            title = "Perfect!"
+        } else if difference < 5 {
+            title = "You almost had it!"
+        } else if difference < 10 {
+            title = "Pretty good!"
+        } else {
+            title = "Not even close..."
+        }
+        return title
+    }
+    
+    private func calculateDifference() -> Int {
+        let currentValue = lroundf(sliderValue)
+        
+        var difference = currentValue - target
+        if difference < 0 {
+            difference = abs(target - currentValue)
+        }
+        return difference
+    }
+    
+    private func startOver() {
+        score = 0
+        round = 0
+        points = 0
+        startNewRound()
+        
     }
 }
 
