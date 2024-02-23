@@ -9,7 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var showAlert = false
-    @State private var point: Double = 0
+    @State private var sliderValue: Float = 50
+    @State private var target = Int.random(in: 1...100)
     
     var body: some View {
         VStack(alignment: .center, spacing: 50) {
@@ -22,30 +23,41 @@ struct ContentView: View {
             HStack {
                 Label("1", systemImage: "")
                     .labelStyle(.titleOnly)
-                Slider(value: $point, in: 1...100)
+                Slider(value: $sliderValue, in: 1...100)
+                    .onChange(of: sliderValue){ value in
+                        print("New value \(lroundf(sliderValue))")
+                    }
                 Label("100", systemImage: "")
                     .labelStyle(.titleOnly)
             }
             HStack {
                 Button("Hit me") {
                     print("Button Hit")
+                    showAlert = true
+                }
+                .alert(isPresented: $showAlert) {
+                    Alert(title: Text("Hello World"), message: Text("The value of the slider is \(lroundf(sliderValue)).The target value is \(target)"), dismissButton: .default(Text("OK")))
                 }
             }
             HStack(alignment: .center, spacing: 300) {
-                HStack {
+                HStack(alignment: .center, spacing: 50) {
                     Button("Start Over") {
                         print("Button hit")
                     }
-                    Label("Score:", systemImage: "")
-                        .labelStyle(.titleOnly)
-                    Label("999", systemImage: "")
-                        .labelStyle(.titleOnly)
+                    HStack {
+                        Label("Score:", systemImage: "")
+                            .labelStyle(.titleOnly)
+                        Label("999", systemImage: "")
+                            .labelStyle(.titleOnly)
+                    }
                 }
-                HStack {
-                    Label("Round:", systemImage: "")
-                        .labelStyle(.titleOnly)
-                    Label("999", systemImage: "")
-                        .labelStyle(.titleOnly)
+                HStack(alignment: .center, spacing: 50) {
+                    HStack {
+                        Label("Round:", systemImage: "")
+                            .labelStyle(.titleOnly)
+                        Label("999", systemImage: "")
+                            .labelStyle(.titleOnly)
+                    }
                     Button(action: {
                         print("Info button tapped")
                     }) {
