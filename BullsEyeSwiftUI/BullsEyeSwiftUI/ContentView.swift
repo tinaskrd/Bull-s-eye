@@ -36,7 +36,9 @@ struct ContentView: View {
                     showAlert = true
                 }
                 .alert(isPresented: $showAlert) {
-                    Alert(title: Text("Hello World"), message: Text("The value of the slider is \(lroundf(sliderValue)).The target value is \(target)"), dismissButton: .default(Text("OK")))
+                    Alert(title: Text("Hello World"), message: Text("The value of the slider is \(lroundf(sliderValue)).The target value is \(target)"), dismissButton: .default(Text("OK"), action: {
+                        startNewRound()
+                    }))
                 }
             }
             HStack(alignment: .center, spacing: 300) {
@@ -68,6 +70,13 @@ struct ContentView: View {
             }
             
         }
+    }
+}
+
+extension ContentView {
+    private func startNewRound() {
+        target = Int.random(in: 1...100)
+        sliderValue = 50
     }
 }
 
