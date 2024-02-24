@@ -25,7 +25,7 @@ struct HitMeButtonStyle: ButtonStyle {
     }
 }
 
-struct StartOverButtonStyle: ButtonStyle {
+struct SmallButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .frame(width: 32, height: 32)

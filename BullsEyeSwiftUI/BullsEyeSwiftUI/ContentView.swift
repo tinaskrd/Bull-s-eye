@@ -50,9 +50,13 @@ struct ContentView: View {
                         .font(.custom("Arial Rounded MT Bold", size: 16))
                         .scaledToFit()
                     Slider(value: $sliderValue, in: 1...100)
+                        
+                    
                         .onChange(of: sliderValue){ value in
                             print("New value \(lroundf(sliderValue))")
                         }
+                        
+                        
                     Label("100", systemImage: "")
                         .labelStyle(.titleOnly)
                         .labelStyle(.titleOnly)
@@ -61,6 +65,7 @@ struct ContentView: View {
                         .font(.custom("Arial Rounded MT Bold", size: 16))
                         .scaledToFit()
                 }
+                
                 HStack {
                     Button("Hit me") {
                         print("Button Hit")
@@ -81,7 +86,7 @@ struct ContentView: View {
                         }) {
                             Image("icStartOverButton")
                         }
-                        .buttonStyle(StartOverButtonStyle())
+                        .buttonStyle(SmallButtonStyle())
                         HStack {
                             Label("Score:", systemImage: "")
                                 .labelStyle(.titleOnly)
@@ -119,9 +124,9 @@ struct ContentView: View {
                         Button(action: {
                             print("Info button tapped")
                         }) {
-                            Image(systemName: "info.circle")
-                                .foregroundColor(.blue)
+                            Image("icInfoButton")
                         }
+                        .buttonStyle(SmallButtonStyle())
                     }
                 }
             }
