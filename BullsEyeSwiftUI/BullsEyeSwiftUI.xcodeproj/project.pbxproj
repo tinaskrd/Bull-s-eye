@@ -12,6 +12,7 @@
 		37A5B7822B88EEFF00BA3B30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37A5B7812B88EEFF00BA3B30 /* Assets.xcassets */; };
 		37A5B7852B88EEFF00BA3B30 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37A5B7842B88EEFF00BA3B30 /* Preview Assets.xcassets */; };
 		37A5B78E2B8A37ED00BA3B30 /* CustomButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A5B78D2B8A37ED00BA3B30 /* CustomButtonStyles.swift */; };
+		37A5B7982B8A6EF200BA3B30 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A5B7972B8A6EF200BA3B30 /* InfoView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		37A5B7812B88EEFF00BA3B30 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		37A5B7842B88EEFF00BA3B30 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		37A5B78D2B8A37ED00BA3B30 /* CustomButtonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonStyles.swift; sourceTree = "<group>"; };
+		37A5B7972B8A6EF200BA3B30 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 				37A5B77D2B88EEFA00BA3B30 /* BullsEyeSwiftUIApp.swift */,
 				37A5B77F2B88EEFA00BA3B30 /* ContentView.swift */,
 				37A5B78D2B8A37ED00BA3B30 /* CustomButtonStyles.swift */,
+				37A5B7972B8A6EF200BA3B30 /* InfoView.swift */,
 				37A5B7812B88EEFF00BA3B30 /* Assets.xcassets */,
 				37A5B7832B88EEFF00BA3B30 /* Preview Content */,
 			);
@@ -140,6 +143,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37A5B7982B8A6EF200BA3B30 /* InfoView.swift in Sources */,
 				37A5B7802B88EEFA00BA3B30 /* ContentView.swift in Sources */,
 				37A5B77E2B88EEFA00BA3B30 /* BullsEyeSwiftUIApp.swift in Sources */,
 				37A5B78E2B8A37ED00BA3B30 /* CustomButtonStyles.swift in Sources */,

@@ -14,6 +14,7 @@ struct ContentView: View {
     @State private var score = 0
     @State private var points = 0
     @State private var round = 0
+    @State private var isInfoViewPresented = false
     
     var body: some View {
         ZStack {
@@ -50,8 +51,7 @@ struct ContentView: View {
                         .font(.custom("Arial Rounded MT Bold", size: 16))
                         .scaledToFit()
                     Slider(value: $sliderValue, in: 1...100)
-                        
-                    
+                        .accentColor(.green)
                         .onChange(of: sliderValue){ value in
                             print("New value \(lroundf(sliderValue))")
                         }
@@ -122,11 +122,15 @@ struct ContentView: View {
                                 .scaledToFit()
                         }
                         Button(action: {
+                            isInfoViewPresented = true
                             print("Info button tapped")
                         }) {
                             Image("icInfoButton")
                         }
                         .buttonStyle(SmallButtonStyle())
+                        .sheet(isPresented: $isInfoViewPresented, content: {
+                            InfoView()
+                        })
                     }
                 }
             }
