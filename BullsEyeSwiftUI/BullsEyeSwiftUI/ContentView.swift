@@ -16,60 +16,69 @@ struct ContentView: View {
     @State private var round = 0
     
     var body: some View {
-        VStack(alignment: .center, spacing: 50) {
-            HStack{
-                Label("Put the Bull's Eye as close as you can to:", systemImage: "")
-                    .labelStyle(.titleOnly)
-                Label("\(target)", systemImage: "")
-                    .labelStyle(.titleOnly)
-            }
-            HStack {
-                Label("1", systemImage: "")
-                    .labelStyle(.titleOnly)
-                Slider(value: $sliderValue, in: 1...100)
-                    .onChange(of: sliderValue){ value in
-                        print("New value \(lroundf(sliderValue))")
-                    }
-                Label("100", systemImage: "")
-                    .labelStyle(.titleOnly)
-            }
-            HStack {
-                Button("Hit me") {
-                    print("Button Hit")
-                    points = 100 - calculateDifference()
-                    showAlert = true
+        ZStack {
+            Image("icBackground")
+                .resizable()
+                .scaledToFill()
+                .frame(minWidth: 0, maxWidth: .infinity,minHeight: 0, maxHeight: .infinity)
+                .clipped()
+                .ignoresSafeArea(.all)
+            
+            VStack(alignment: .center, spacing: 50) {
+                HStack{
+                    Label("Put the Bull's Eye as close as you can to:", systemImage: "")
+                        .labelStyle(.titleOnly)
+                    Label("\(target)", systemImage: "")
+                        .labelStyle(.titleOnly)
                 }
-                .alert(isPresented: $showAlert) {
-                    Alert(title: Text(alertTitle(difference: calculateDifference())), message: Text("You scored: \(points)!"), dismissButton: .default(Text("OK"), action: {
-                        startNewRound()
-                    }))
+                HStack {
+                    Label("1", systemImage: "")
+                        .labelStyle(.titleOnly)
+                    Slider(value: $sliderValue, in: 1...100)
+                        .onChange(of: sliderValue){ value in
+                            print("New value \(lroundf(sliderValue))")
+                        }
+                    Label("100", systemImage: "")
+                        .labelStyle(.titleOnly)
                 }
-            }
-            HStack(alignment: .center, spacing: 300) {
-                HStack(alignment: .center, spacing: 50) {
-                    Button("Start Over") {
-                        print("Start Over button hit")
-                        startOver()
+                HStack {
+                    Button("Hit me") {
+                        print("Button Hit")
+                        points = 100 - calculateDifference()
+                        showAlert = true
                     }
-                    HStack {
-                        Label("Score:", systemImage: "")
-                            .labelStyle(.titleOnly)
-                        Label("\(score)", systemImage: "")
-                            .labelStyle(.titleOnly)
+                    .alert(isPresented: $showAlert) {
+                        Alert(title: Text(alertTitle(difference: calculateDifference())), message: Text("You scored: \(points)!"), dismissButton: .default(Text("OK"), action: {
+                            startNewRound()
+                        }))
                     }
                 }
-                HStack(alignment: .center, spacing: 50) {
-                    HStack {
-                        Label("Round:", systemImage: "")
-                            .labelStyle(.titleOnly)
-                        Label("\(round)", systemImage: "")
-                            .labelStyle(.titleOnly)
+                HStack(alignment: .center, spacing: 300) {
+                    HStack(alignment: .center, spacing: 50) {
+                        Button("Start Over") {
+                            print("Start Over button hit")
+                            startOver()
+                        }
+                        HStack {
+                            Label("Score:", systemImage: "")
+                                .labelStyle(.titleOnly)
+                            Label("\(score)", systemImage: "")
+                                .labelStyle(.titleOnly)
+                        }
                     }
-                    Button(action: {
-                        print("Info button tapped")
-                    }) {
-                        Image(systemName: "info.circle")
-                            .foregroundColor(.blue)
+                    HStack(alignment: .center, spacing: 50) {
+                        HStack {
+                            Label("Round:", systemImage: "")
+                                .labelStyle(.titleOnly)
+                            Label("\(round)", systemImage: "")
+                                .labelStyle(.titleOnly)
+                        }
+                        Button(action: {
+                            print("Info button tapped")
+                        }) {
+                            Image(systemName: "info.circle")
+                                .foregroundColor(.blue)
+                        }
                     }
                 }
             }
@@ -113,7 +122,7 @@ extension ContentView {
     
     private func startOver() {
         score = 0
-        round = 0
+        round = -1
         points = 0
         startNewRound()
         
