@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct InfoView: View {
-    //@Binding var isPresented: Bool
+    @Binding var isPresented: Bool
     var body: some View {
         ZStack {
             Image("icBackground")
@@ -22,12 +22,14 @@ struct InfoView: View {
                     WebView(url: url)
                 }
                 Button(action: {
-                    // isPresented = false
+                    isPresented = false
                 }) {
                     Text("Close")
                 }
+                .buttonStyle(GoldenButtonStyle())
                 
             }
+            .padding(.all, 16)
         }
     }
 }

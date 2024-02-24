@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct HitMeButtonStyle: ButtonStyle {
+struct GoldenButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .frame(width: 100, height: 37)

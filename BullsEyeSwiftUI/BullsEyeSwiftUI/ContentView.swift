@@ -72,7 +72,7 @@ struct ContentView: View {
                         points = 100 - calculateDifference()
                         showAlert = true
                     }
-                    .buttonStyle(HitMeButtonStyle())
+                    .buttonStyle(GoldenButtonStyle())
                     .alert(isPresented: $showAlert) {
                         Alert(title: Text(alertTitle(difference: calculateDifference())), message: Text("You scored: \(points)!"), dismissButton: .default(Text("OK"), action: {
                             startNewRound()
@@ -129,8 +129,7 @@ struct ContentView: View {
                         }
                         .buttonStyle(SmallButtonStyle())
                         .sheet(isPresented: $isInfoViewPresented, content: {
-                            // MARK: - TO DO 
-                            InfoView()
+                            InfoView(isPresented: $isInfoViewPresented)
                         })
                     }
                 }
