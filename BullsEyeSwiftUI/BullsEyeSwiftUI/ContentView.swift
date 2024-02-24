@@ -28,18 +28,38 @@ struct ContentView: View {
                 HStack{
                     Label("Put the Bull's Eye as close as you can to:", systemImage: "")
                         .labelStyle(.titleOnly)
+                        .foregroundStyle(.white)
+                        .shadow(color: .black, radius: 10, x:2, y:2)
+                        .font(.custom("Arial Rounded MT Bold", size: 16))
+                        .scaledToFit()
                     Label("\(target)", systemImage: "")
                         .labelStyle(.titleOnly)
+                        .labelStyle(.titleOnly)
+                        .foregroundStyle(.white)
+                        .shadow(color: .black, radius: 10, x:2, y:2)
+                        .font(.custom("Arial Rounded MT Bold", size: 16))
+                        .scaledToFit()
+                    
                 }
                 HStack {
                     Label("1", systemImage: "")
                         .labelStyle(.titleOnly)
+                        .labelStyle(.titleOnly)
+                        .foregroundStyle(.white)
+                        .shadow(color: .black, radius: 10, x:2, y:2)
+                        .font(.custom("Arial Rounded MT Bold", size: 16))
+                        .scaledToFit()
                     Slider(value: $sliderValue, in: 1...100)
                         .onChange(of: sliderValue){ value in
                             print("New value \(lroundf(sliderValue))")
                         }
                     Label("100", systemImage: "")
                         .labelStyle(.titleOnly)
+                        .labelStyle(.titleOnly)
+                        .foregroundStyle(.white)
+                        .shadow(color: .black, radius: 10, x:2, y:2)
+                        .font(.custom("Arial Rounded MT Bold", size: 16))
+                        .scaledToFit()
                 }
                 HStack {
                     Button("Hit me") {
@@ -47,6 +67,7 @@ struct ContentView: View {
                         points = 100 - calculateDifference()
                         showAlert = true
                     }
+                    .buttonStyle(HitMeButtonStyle())
                     .alert(isPresented: $showAlert) {
                         Alert(title: Text(alertTitle(difference: calculateDifference())), message: Text("You scored: \(points)!"), dismissButton: .default(Text("OK"), action: {
                             startNewRound()
@@ -55,23 +76,45 @@ struct ContentView: View {
                 }
                 HStack(alignment: .center, spacing: 300) {
                     HStack(alignment: .center, spacing: 50) {
-                        Button("Start Over") {
-                            print("Start Over button hit")
+                        Button(action: {
                             startOver()
+                        }) {
+                            Image("icStartOverButton")
                         }
+                        .buttonStyle(StartOverButtonStyle())
                         HStack {
                             Label("Score:", systemImage: "")
                                 .labelStyle(.titleOnly)
+                                .labelStyle(.titleOnly)
+                                .foregroundStyle(.white)
+                                .shadow(color: .black, radius: 10, x:2, y:2)
+                                .font(.custom("Arial Rounded MT Bold", size: 16))
+                                .scaledToFit()
                             Label("\(score)", systemImage: "")
                                 .labelStyle(.titleOnly)
+                                .labelStyle(.titleOnly)
+                                .foregroundStyle(.white)
+                                .shadow(color: .black, radius: 10, x:2, y:2)
+                                .font(.custom("Arial Rounded MT Bold", size: 16))
+                                .scaledToFit()
                         }
                     }
                     HStack(alignment: .center, spacing: 50) {
                         HStack {
                             Label("Round:", systemImage: "")
                                 .labelStyle(.titleOnly)
+                                .labelStyle(.titleOnly)
+                                .foregroundStyle(.white)
+                                .shadow(color: .black, radius: 10, x:2, y:2)
+                                .font(.custom("Arial Rounded MT Bold", size: 16))
+                                .scaledToFit()
                             Label("\(round)", systemImage: "")
                                 .labelStyle(.titleOnly)
+                                .labelStyle(.titleOnly)
+                                .foregroundStyle(.white)
+                                .shadow(color: .black, radius: 10, x:2, y:2)
+                                .font(.custom("Arial Rounded MT Bold", size: 16))
+                                .scaledToFit()
                         }
                         Button(action: {
                             print("Info button tapped")
